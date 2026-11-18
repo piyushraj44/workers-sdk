@@ -40,6 +40,12 @@ export {
 	WorkflowExportSchema,
 } from "./schema";
 export { generateTypes } from "./generate";
+export { getBundlerContract } from "./bundler-contract";
+export type {
+	BundlerContract,
+	BundlerContractOptions,
+	BundlerModuleRule,
+} from "./bundler-contract";
 export { convertToWranglerConfig } from "./convert";
 export { loadConfig, registerConfigHooks } from "./load";
 export {

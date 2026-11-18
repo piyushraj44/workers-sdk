@@ -5,6 +5,7 @@ import {
 	getBuildPlatformFromEnv,
 	getWranglerTmpDir,
 	UserError,
+	WORKERD_RESOLVE_CONDITIONS,
 } from "@cloudflare/workers-utils";
 import chalk from "chalk";
 import * as esbuild from "esbuild";
@@ -77,7 +78,7 @@ export function getBuildConditions() {
 	if (envVar !== undefined) {
 		return envVar.split(",");
 	} else {
-		return ["workerd", "worker", "browser"];
+		return [...WORKERD_RESOLVE_CONDITIONS];
 	}
 }
 

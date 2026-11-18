@@ -156,6 +156,11 @@ export {
 } from "./compatibility-date";
 export type { CompatDate } from "./compatibility-date";
 export { getNodeCompat } from "./node-compat";
+export {
+	CLOUDFLARE_BUILTIN_MODULES,
+	isNavigatorDefined,
+	WORKERD_RESOLVE_CONDITIONS,
+} from "./bundling";
 export { getFreshSourceMapSupport } from "./sourcemap";
 export { DEFAULT_COMPAT_DATE } from "./default-compat-date";
 

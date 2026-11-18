@@ -5,6 +5,7 @@ import {
 	extractBindingsOfType,
 	getWranglerHiddenDirPath,
 	getWranglerTmpDir,
+	isNavigatorDefined,
 } from "@cloudflare/workers-utils";
 import { watch } from "chokidar";
 import { BuildFailure } from "../../deployment-bundle/build-failures";
@@ -20,7 +21,6 @@ import { runCustomBuild } from "../../deployment-bundle/run-custom-build";
 import { getAssetChangeMessage } from "../../dev";
 import { runBuild } from "../../dev/use-esbuild";
 import { logger } from "../../logger";
-import { isNavigatorDefined } from "../../navigator-user-agent";
 import { debounce } from "../../utils/debounce";
 import { isAbortError } from "../../utils/isAbortError";
 import { Controller } from "./BaseController";

@@ -7,6 +7,7 @@ import {
 	configFileName,
 	DEFAULT_COMPAT_DATE,
 	FatalError,
+	isNavigatorDefined,
 	UserError,
 } from "@cloudflare/workers-utils";
 import { watch } from "chokidar";
@@ -22,7 +23,6 @@ import { startDev } from "../dev/start-dev";
 import { run } from "../experimental-flags";
 import { logger } from "../logger";
 import * as metrics from "../metrics";
-import { isNavigatorDefined } from "../navigator-user-agent";
 import { getBasePath } from "../paths";
 import { debounce } from "../utils/debounce";
 import * as shellquote from "../utils/shell-quote";

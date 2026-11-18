@@ -10,6 +10,7 @@ import path, {
 import {
 	FatalError,
 	findWranglerConfig,
+	isNavigatorDefined,
 	UserError,
 } from "@cloudflare/workers-utils";
 import { createUploadWorkerBundleContents } from "../api/pages/create-worker-bundle-contents";
@@ -20,7 +21,6 @@ import { writeAdditionalModules } from "../deployment-bundle/find-additional-mod
 import { validateNodeCompatMode } from "../deployment-bundle/node-compat";
 import { logger } from "../logger";
 import * as metrics from "../metrics";
-import { isNavigatorDefined } from "../navigator-user-agent";
 import { buildFunctions } from "./buildFunctions";
 import {
 	EXIT_CODE_FUNCTIONS_NO_ROUTES_ERROR,

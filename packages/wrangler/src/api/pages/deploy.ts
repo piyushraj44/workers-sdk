@@ -6,6 +6,7 @@ import { cwd } from "node:process";
 import {
 	COMPLIANCE_REGION_CONFIG_PUBLIC,
 	FatalError,
+	isNavigatorDefined,
 	ParseError,
 	parseJSON,
 } from "@cloudflare/workers-utils";
@@ -15,7 +16,6 @@ import { readPagesConfig } from "../../config";
 import { shouldCheckFetch } from "../../deployment-bundle/bundle";
 import { validateNodeCompatMode } from "../../deployment-bundle/node-compat";
 import { logger } from "../../logger";
-import { isNavigatorDefined } from "../../navigator-user-agent";
 import { buildFunctions } from "../../pages/buildFunctions";
 import { MAX_DEPLOYMENT_ATTEMPTS } from "../../pages/constants";
 import {

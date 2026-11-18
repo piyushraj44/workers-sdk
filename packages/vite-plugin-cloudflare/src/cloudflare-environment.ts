@@ -1,5 +1,6 @@
 import assert from "node:assert";
 import { nonPrefixedNodeModules } from "@cloudflare/unenv-preset";
+import { CLOUDFLARE_BUILTIN_MODULES } from "@cloudflare/workers-utils";
 import { CoreHeaders } from "miniflare";
 import * as vite from "vite";
 import { nodeBuiltinsRE } from "./nodejs-compat";
@@ -187,14 +188,7 @@ export class CloudflareDevEnvironment extends vite.DevEnvironment {
 	}
 }
 
-export const cloudflareBuiltInModules = [
-	"cloudflare:durable-objects",
-	"cloudflare:email",
-	"cloudflare:node",
-	"cloudflare:sockets",
-	"cloudflare:workers",
-	"cloudflare:workflows",
-];
+export const cloudflareBuiltInModules = [...CLOUDFLARE_BUILTIN_MODULES];
 
 const defaultConditions = ["workerd", "worker", "module", "browser"];
 

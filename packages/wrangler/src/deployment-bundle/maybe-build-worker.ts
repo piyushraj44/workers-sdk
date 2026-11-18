@@ -1,8 +1,8 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { validateNodeCompatMode } from "@cloudflare/deploy-helpers";
+import { isNavigatorDefined } from "@cloudflare/workers-utils";
 import { logger } from "../logger";
-import { isNavigatorDefined } from "../navigator-user-agent";
 import { bundleWorker } from "./bundle";
 import { logBuildOutput } from "./esbuild-plugins/log-build-output";
 import {

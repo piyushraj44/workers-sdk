@@ -2,10 +2,9 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { runInTempDir } from "@cloudflare/workers-utils/test-helpers";
 import dedent from "ts-dedent";
-import { afterEach, assert, describe, it, test, vi } from "vitest";
+import { afterEach, describe, it, vi } from "vitest";
 import { bundleWorker } from "../deployment-bundle/bundle";
 import { noopModuleCollector } from "../deployment-bundle/module-collection";
-import { isNavigatorDefined } from "../navigator-user-agent";
 import { mockConsoleMethods } from "./helpers/mock-console";
 import type { BundleOptions } from "../deployment-bundle/bundle";
 
@@ -22,62 +21,6 @@ async function seedFs(files: Record<string, string>): Promise<void> {
 		await writeFile(location, contents);
 	}
 }
-
-describe("isNavigatorDefined", () => {
-	test("default", ({ expect }) => {
-		expect(isNavigatorDefined(undefined)).toBe(false);
-	});
-
-	test("modern date", ({ expect }) => {
-		expect(isNavigatorDefined("2024-01-01")).toBe(true);
-	});
-
-	test("old date", ({ expect }) => {
-		expect(isNavigatorDefined("2000-01-01")).toBe(false);
-	});
-
-	test("switch date", ({ expect }) => {
-		expect(isNavigatorDefined("2022-03-21")).toBe(true);
-	});
-
-	test("before date", ({ expect }) => {
-		expect(isNavigatorDefined("2022-03-20")).toBe(false);
-	});
-
-	test("old date, but with flag", ({ expect }) => {
-		expect(isNavigatorDefined("2000-01-01", ["global_navigator"])).toBe(true);
-	});
-
-	test("old date, with disable flag", ({ expect }) => {
-		expect(isNavigatorDefined("2000-01-01", ["no_global_navigator"])).toBe(
-			false
-		);
-	});
-
-	test("new date, but with disable flag", ({ expect }) => {
-		expect(isNavigatorDefined("2024-01-01", ["no_global_navigator"])).toBe(
-			false
-		);
-	});
-
-	test("new date, with enable flag", ({ expect }) => {
-		expect(isNavigatorDefined("2024-01-01", ["global_navigator"])).toBe(true);
-	});
-
-	test("errors with disable and enable flags specified", ({ expect }) => {
-		try {
-			isNavigatorDefined("2024-01-01", [
-				"no_global_navigator",
-				"global_navigator",
-			]);
-			assert(false, "Unreachable");
-		} catch (e) {
-			expect(e).toMatchInlineSnapshot(
-				`[Error: Conflicting compatibility flags: "global_navigator" and "no_global_navigator" cannot both be set. Remove one of these flags from your configuration.]`
-			);
-		}
-	});
-});
 
 // Does bundleWorker respect the value of `defineNavigatorUserAgent`?
 describe("defineNavigatorUserAgent is respected", () => {
